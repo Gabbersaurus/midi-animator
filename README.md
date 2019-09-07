@@ -7,6 +7,8 @@ The project is hosted over at https://midi-animator.pascalbouwhuis.nl.
 ##Todo
 Currently the tool is configured to only work for LMNC's machine. If enough people want this for their own contraptions, I will add a config panel to change the width, height, midi channel and note mappings.
 
+There currently is no validation on the JSON import.
+
 
 ## Project setup
 ```

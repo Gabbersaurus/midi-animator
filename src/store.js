@@ -16,6 +16,13 @@ export default new Vuex.Store({
     ]
   },
   mutations: {
+    load (state, payload) {
+      state.height = payload.height;
+      state.width = payload.width;
+      state.bpm = payload.bpm;
+      state.noteDuration = payload.noteDuration;
+      state.frames = payload.frames;
+    },
     setBpm (state, bpm) {
       state.bpm = bpm;
     },

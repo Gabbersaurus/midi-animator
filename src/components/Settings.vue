@@ -15,7 +15,7 @@
   import Export from './Settings/Export';
 
   export default {
-    name: 'AnimationGrid',
+    name: 'Settings',
     components: {Playback, FrameSettings, Export},
   };
 </script>
