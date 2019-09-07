@@ -3,6 +3,9 @@
         <div class="title">
             <h1>Midi Animator</h1>
         </div>
+        <div class="sub-title">
+            Current frame: {{ $store.state.currentFrame + 1 }}
+        </div>
         <playback></playback>
         <frame-settings></frame-settings>
     </div>
@@ -42,14 +45,22 @@
         box-shadow: 0 -4px 0 0 inset rgba(0, 0, 0, 0.25);
 
         .title {
-            background-color: rgba(0, 0, 0, 0.1);
+            background-color: rgba(0, 0, 0, 0.25);
             padding: 20px 20px;
+            text-align: center;
 
             h1 {
                 margin: 0;
                 font-weight: 100;
                 font-size: 36px;
             }
+        }
+
+        .sub-title {
+            background-color: rgba(0, 0, 0, 0.125);
+            font-size: 20px;
+            padding: 10px 10px;
+            text-align: center;
         }
     }
 </style>

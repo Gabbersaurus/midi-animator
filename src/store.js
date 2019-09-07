@@ -8,18 +8,11 @@ export default new Vuex.Store({
   state: {
     height: 6,
     width: 8,
+    bpm: 120,
+    noteDuration: 1,
     currentFrame: 0,
     frames: [
-      [
-        [true, false, false, true, false, true],
-        [true, false, false, true, false, true],
-        [true, true, false, true, false, true],
-        [true, true, false, true, false, false],
-        [true, true, false, true, false, true],
-        [true, false, false, true, false, true],
-        [true, false, false, true, false, true],
-        [true, false, false, true, false, true],
-      ]
+      FrameHelper.createEmptyFrame(6, 8)
     ]
   },
   mutations: {

@@ -1,9 +1,10 @@
 <template>
-    <div id="animation-grid">
+    <div id="animation-grid" draggable="false">
         <div class="shadow"></div>
-        <div class="row" v-for="y in $store.state.height">
+        <div class="row" v-for="y in $store.state.height" draggable="false">
             <div class="cell" v-for="x in $store.state.width" :class="{'active': $store.getters.getPixel(x - 1, y - 1)}"
-                 @click="setPixel(x - 1, y - 1)">
+                 @mouseover="(event) => {mouseover(event, x - 1, y - 1)}" @mousedown="mouseDown(x - 1, y - 1)"
+                 draggable="false">
             </div>
         </div>
     </div>
@@ -20,6 +21,18 @@
         this.$store.commit('setPixel', {
           x, y
         });
+      },
+      mouseover (event, x, y) {
+        if (event.buttons > 0) {
+          this.setPixel(x, y);
+        }
+        
+        return false;
+      },
+      mouseDown (x, y) {
+        this.setPixel(x, y);
+
+        return false;
       }
     }
   };
