@@ -26,7 +26,7 @@
         if (event.buttons > 0) {
           this.setPixel(x, y);
         }
-        
+
         return false;
       },
       mouseDown (x, y) {
@@ -49,6 +49,7 @@
         flex-direction: column;
         overflow: hidden;
         margin-right: 5vw;
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
 
         .row {
             flex: 1;

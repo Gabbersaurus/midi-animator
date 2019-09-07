@@ -16,6 +16,12 @@ export default new Vuex.Store({
     ]
   },
   mutations: {
+    setBpm (state, bpm) {
+      state.bpm = bpm;
+    },
+    setNoteDuration (state, noteDuration) {
+      state.noteDuration = noteDuration;
+    },
     setPixel (state, payload) {
       let frames = state.frames;
       state.frames = [];
