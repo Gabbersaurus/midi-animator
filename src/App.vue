@@ -1,9 +1,10 @@
 <template>
     <div id="app">
+        <InfoOverlay :open="overlayOpen" @close="overlayOpen = false"></InfoOverlay>
         <header>
             <h1>Midi Animator</h1>
             <p>A project by <a href="https://www.linkedin.com/in/pascal-bouwhuis-67971045/" target="_blank">Pascal
-                Bouwhuis</a>. <a href="#">How to use?</a></p>
+                Bouwhuis</a>. <a @click="overlayOpen = true">Read me!</a></p>
         </header>
         <main>
             <AnimationGrid/>
@@ -15,13 +16,20 @@
 <script>
   import AnimationGrid from './components/AnimationGrid.vue';
   import Settings from './components/Settings.vue';
+  import InfoOverlay from './components/InfoOverlay';
 
   export default {
     name: 'app',
     components: {
+      InfoOverlay,
       AnimationGrid,
       Settings,
     },
+    data () {
+      return {
+        overlayOpen: false
+      };
+    }
   };
 </script>
 
@@ -37,6 +45,7 @@
         font-family: 'Roboto', sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        position: absolute;
         padding: 25px;
         box-sizing: border-box;
         color: white;
@@ -45,9 +54,9 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        width: 100%;
 
         @include tablet {
-            width: 100vw;
             height: 100vh;
         }
 
@@ -65,10 +74,6 @@
                 margin: 0;
                 font-weight: 100;
                 font-size: 28px;
-
-                a {
-                    color: #B39DDB;
-                }
             }
         }
 
@@ -82,6 +87,12 @@
                 flex-direction: row;
             }
         }
+    }
+
+    a {
+        color: #B39DDB;
+        text-decoration: underline;
+        cursor: pointer;
     }
 
     button {

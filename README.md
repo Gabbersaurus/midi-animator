@@ -1,6 +1,7 @@
 # Midi-animator
 
 This project was started after watching [Look Mum No Computer's video](https://www.youtube.com/watch?v=gKm0rwuQr3s) where he controls the backlights of his Gameboy Megamachine with Midi. This tool allows you to draw animations and export them to midi.
+This was programmed in a hurry so that this can be released while the video is still fresh, and because of this it can contain some bugs.
 
 The project is hosted over at https://midi-animator.pascalbouwhuis.nl.
 

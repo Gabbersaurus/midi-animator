@@ -49,7 +49,6 @@
             width: 30vw;
         }
 
-
         .sub-title {
             background-color: rgba(0, 0, 0, 0.25);
             font-size: 20px;
