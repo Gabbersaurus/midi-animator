@@ -10,6 +10,7 @@
             <AnimationGrid/>
             <Settings/>
         </main>
+        <copyright></copyright>
     </div>
 </template>
 
@@ -17,6 +18,7 @@
   import AnimationGrid from './components/AnimationGrid.vue';
   import Settings from './components/Settings.vue';
   import InfoOverlay from './components/InfoOverlay';
+  import Copyright from './components/Copyright';
 
   export default {
     name: 'app',
@@ -24,6 +26,7 @@
       InfoOverlay,
       AnimationGrid,
       Settings,
+      Copyright
     },
     data () {
       return {
