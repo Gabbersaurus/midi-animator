@@ -79,7 +79,7 @@
         if (this.playing) {
           this.loop = setInterval(() => {
             this.nextFrame();
-          }, (60 / (this.$store.state.bpm * this.$store.state.noteDuration)) * 1000);
+          }, (60 / (this.$store.state.bpm * (this.$store.state.noteDuration / 4))) * 1000);
 
           return;
         }

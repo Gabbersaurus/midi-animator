@@ -35,13 +35,20 @@
 </style>
 
 <style lang="scss" scoped>
+    @import '../scss/mixins/breakpoints';
+
     #settings {
-        width: 25vw;
-        height: 45vw;
+        width: 75vw;
         border-radius: 5px;
         background-color: #673AB7;
         overflow: hidden;
         box-shadow: 0 0 25px rgba(0, 0, 0, 0.25), 0 -4px 0 0 inset rgba(0, 0, 0, 0.25);
+        margin-bottom: 50px;
+
+        @include tablet {
+            width: 30vw;
+        }
+
 
         .sub-title {
             background-color: rgba(0, 0, 0, 0.25);

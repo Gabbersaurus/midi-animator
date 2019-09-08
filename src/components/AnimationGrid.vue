@@ -39,17 +39,30 @@
 </script>
 
 <style lang="scss" scoped>
+    @import '../scss/mixins/breakpoints';
+
     #animation-grid {
-        width: 45vw;
-        height: 45vw;
+        width: 75vw;
+        height: 75vw;
         border-radius: 5px;
         background-color: #673AB7;
         position: relative;
         display: flex;
         flex-direction: column;
         overflow: hidden;
-        margin-right: 5vw;
         box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
+        margin-bottom: 50px;
+
+        @include tablet {
+            width: 50vw;
+            height: 50vw;
+            margin-right: 50px;
+        }
+
+        @include desktop {
+            width: 35vw;
+            height: 35vw;
+        }
 
         .row {
             flex: 1;

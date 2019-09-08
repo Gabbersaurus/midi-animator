@@ -4,46 +4,53 @@
         <div>
             <button @click="openFilePrompt">Import JSON</button>
             <button @click="exportJson">Export JSON</button>
-            <button>Export Midi</button>
+            <button @click="exportMidi">Export Midi</button>
+            <div class="form-group">
+                <label for="transpose-down">Transpose notes octave down in midi export</label>
+                <input type="checkbox" id="transpose-down" v-model="transposeDown">
+            </div>
         </div>
     </div>
 </template>
 
 <script>
   import {mapState} from 'vuex';
+  import MidiWriter from 'midi-writer-js';
+  import {transpose} from '@tonaljs/tonal';
 
   export default {
     name: 'Export',
+    data () {
+      return {
+        transposeDown: false
+      };
+    },
     computed: {
       ...mapState({
-        bpm: state => state.bpm,
-        noteDuration: state => state.noteDuration,
         width: state => state.width,
         height: state => state.height,
+        bpm: state => state.bpm,
+        noteDuration: state => state.noteDuration,
+        midiChannel: state => state.midiChannel,
         frames: state => state.frames,
+        noteMap: state => state.noteMap
       })
     },
     methods: {
       exportJson () {
         let name = prompt('Name of animation?');
-        
+
         if (name != null) {
           let data = JSON.stringify({
-            bpm: this.bpm,
-            noteDuration: this.noteDuration,
             width: this.width,
             height: this.height,
+            bpm: this.bpm,
+            noteDuration: this.noteDuration,
+            midiChannel: this.midiChannel,
             frames: this.frames,
           });
 
-          let blob = new Blob([data], {type: 'text/plain'});
-          let a = document.createElement('a');
-          a.download = name + '.json';
-          a.href = window.URL.createObjectURL(blob);
-          a.dataset.downloadurl = ['text/json', a.download, a.href].join(':');
-          document.body.appendChild(a);
-          a.click();
-          a.remove();
+          this.downloadBlob(data, name + '.json', 'text/json');
         }
       },
       openFilePrompt () {
@@ -62,6 +69,47 @@
 
         input.click();
       },
+      exportMidi () {
+        let name = prompt('Name of animation?');
+
+        if (name != null) {
+          let track = new MidiWriter.Track();
+          track.setTimeSignature(4, 4);
+          track.setTempo(this.bpm);
+
+          this.frames.forEach((frame) => {
+            let notes = [];
+
+            for (let y = 0; y < this.height; y++) {
+              for (let x = 0; x < this.width; x++) {
+                if (frame[y][x]) {
+                  notes.push(transpose(this.noteMap[y][x], this.transposeDown ? '-8P' : '0P'));
+                }
+              }
+            }
+
+            track.addEvent(new MidiWriter.NoteEvent({
+              pitch: notes,
+              channel: this.midiChannel,
+              duration: this.noteDuration.toString()
+            }));
+          });
+
+          let midi = new MidiWriter.Writer(track);
+
+          this.downloadBlob(midi.buildFile(), name + '.mid', 'audio/midi', true);
+        }
+      },
+      downloadBlob (data, filename, mime) {
+        let blob = new Blob([data], {type: mime});
+        let a = document.createElement('a');
+        a.download = filename;
+        a.href = window.URL.createObjectURL(blob);
+        a.dataset.downloadurl = [mime, a.download, a.href].join(':');
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      }
     }
   };
 </script>
@@ -74,6 +122,12 @@
 
             button {
                 margin-bottom: 10px;
+            }
+
+            .form-group {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
             }
         }
     }

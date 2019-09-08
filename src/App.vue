@@ -27,6 +27,7 @@
 
 <style lang="scss">
     @import url('https://fonts.googleapis.com/css?family=Roboto:100,300&display=swap');
+    @import 'scss/mixins/breakpoints';
 
     body {
         margin: 0;
@@ -36,14 +37,19 @@
         font-family: 'Roboto', sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        padding: 25px;
+        box-sizing: border-box;
         color: white;
         background: linear-gradient(152deg, #4527A0 0%, darken(#4527A0, 10%) 100%);
-        width: 100vw;
-        height: 100vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
+        @include tablet {
+            width: 100vw;
+            height: 100vh;
+        }
 
         header {
             margin-bottom: 25px;
@@ -68,8 +74,13 @@
 
         main {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+
+            @include tablet {
+                flex-direction: row;
+            }
         }
     }
 

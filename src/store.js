@@ -10,10 +10,19 @@ export default new Vuex.Store({
     width: 8,
     bpm: 120,
     noteDuration: 1,
-    currentFrame: 0,
+    midiChannel: 16,
     frames: [
       FrameHelper.createEmptyFrame(6, 8)
-    ]
+    ],
+    noteMap: [
+      ['E4', 'F4', 'F#4', 'G4', 'G#4', 'A4', 'A#4', 'B4'],
+      ['G#3', 'A3', 'A#3', 'B3', 'C4', 'C#4', 'D4', 'D#4'],
+      ['C3', 'C#3', 'D3', 'D#3', 'E3', 'F3', 'F#3', 'G3'],
+      ['E1', 'F1', 'F#1', 'G2', 'G#2', 'A2', 'A#2', 'B2'],
+      ['G#1', 'A1', 'A#1', 'B1', 'C2', 'C#2', 'D2', 'D#2'],
+      ['C1', 'C#1', 'D1', 'D#1', 'E1', 'F1', 'F#1', 'G1'],
+    ],
+    currentFrame: 0,
   },
   mutations: {
     load (state, payload) {
@@ -21,6 +30,7 @@ export default new Vuex.Store({
       state.width = payload.width;
       state.bpm = payload.bpm;
       state.noteDuration = payload.noteDuration;
+      state.midiChannel = payload.midiChannel;
       state.frames = payload.frames;
     },
     setBpm (state, bpm) {
