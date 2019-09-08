@@ -57,9 +57,14 @@ export default new Vuex.Store({
     },
     removeFrame (state) {
       let frames = state.frames;
+      let length = frames.length;
       state.frames = [];
 
-      if (frames.length > 1) {
+      if (state.currentFrame >= length - 1) {
+        state.currentFrame = 0;
+      }
+
+      if (length > 1) {
         frames.pop();
       }
 

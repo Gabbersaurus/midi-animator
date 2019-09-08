@@ -83,7 +83,11 @@
             for (let y = 0; y < this.height; y++) {
               for (let x = 0; x < this.width; x++) {
                 if (frame[y][x]) {
-                  notes.push(transpose(this.noteMap[y][x], this.transposeDown ? '-8P' : '0P'));
+                  if (this.transposeDown) {
+                    notes.push(transpose(this.noteMap[y][x], '-8P'));
+                  } else {
+                    notes.push(this.noteMap[y][x]);
+                  }
                 }
               }
             }
