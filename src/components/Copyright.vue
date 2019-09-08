@@ -21,13 +21,14 @@
     @import '../scss/mixins/breakpoints';
 
     #copyright-overlay {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
         background-color: rgba(0, 0, 0, 0.25);
         text-align: center;
         height: 30px;
         line-height: 30px;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
     }
 </style>
